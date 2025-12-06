@@ -14,20 +14,48 @@ body { font-family: Inter,Segoe UI,Arial; margin: 0; background: var(--bg); colo
 .topbar .title{font-weight:700}
 .topbar .subtitle{font-size:13px; color:var(--muted)}
 
+/* Control Panel */
+.control-panel{padding:12px 20px; background:rgba(255,255,255,0.01); border-bottom:1px solid rgba(255,255,255,0.02); display:flex; gap:20px; align-items:center; flex-wrap:wrap}
+.control-group{display:flex; align-items:center; gap:8px; font-size:13px}
+.control-group label{color:var(--muted)}
+.control-group select{background:#0b1228; border:1px solid rgba(255,255,255,0.1); color:#e6eef6; padding:6px 8px; border-radius:4px; cursor:pointer}
+.control-group select:hover{border-color:rgba(255,255,255,0.2)}
+.btn-primary, .btn-secondary{padding:6px 12px; border:none; border-radius:4px; cursor:pointer; font-size:13px; font-weight:600}
+.btn-primary{background:#4cc9f0; color:#0f1720}
+.btn-primary:hover{background:#5dd8ff}
+.btn-secondary{background:rgba(255,255,255,0.05); color:#e6eef6; border:1px solid rgba(255,255,255,0.1)}
+.btn-secondary:hover{background:rgba(255,255,255,0.1)}
+.connection-status{display:flex; align-items:center; gap:6px; margin-left:auto}
+.status-dot{width:8px; height:8px; border-radius:50%; display:inline-block}
+.status-connected{background:#22c55e}
+.status-disconnected{background:#ef4444}
+
 .layout{display:flex; gap:18px; padding:18px; align-items:flex-start}
 .left{flex:0 0 70%}
 .right{flex:0 0 30%; display:flex; flex-direction:column; gap:12px}
 
-.network-container{height:78vh; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; padding:8px; box-shadow: 0 6px 30px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.03); position:relative }
+.network-container{height:75vh; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; padding:8px; box-shadow: 0 6px 30px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.03); position:relative }
 
 .card{background:var(--card); border-radius:10px; padding:12px; box-shadow:0 6px 20px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.02)}
 .card h3{margin:0 0 8px 0; font-size:14px}
 .device-info .empty{color:var(--muted)}
 .device-info .muted{color:var(--muted); margin-bottom:8px}
 .device-info .details{display:flex; flex-direction:column; gap:6px}
-.device-info .stats{margin-top:8px; color:var(--muted)}
+.device-info .stats{margin-top:8px; color:var(--muted); font-size:12px}
 
-.log{max-height:45vh; overflow:hidden; display:flex; flex-direction:column}
+/* Stats Card */
+.stats{max-height:20vh; overflow-y:auto}
+.stat-row{display:flex; justify-content:space-between; padding:6px 0; font-size:13px}
+.stat-value{font-weight:600; color:#4cc9f0}
+.stat-value.muted{color:var(--muted)}
+
+/* Alerts */
+.alerts{max-height:20vh; overflow-y:auto}
+.alerts-list{display:flex; flex-direction:column; gap:6px}
+.alert-item{padding:8px; border-radius:6px; background:rgba(239,68,68,0.1); border-left:3px solid #ef4444; font-size:12px}
+
+/* Log */
+.log{max-height:35vh; overflow:hidden; display:flex; flex-direction:column}
 .log-entries{overflow:auto; padding-right:6px}
 .entry{padding:8px; border-radius:8px; background:rgba(255,255,255,0.01); margin-bottom:8px; font-size:13px}
 .entry .muted{color:var(--muted); font-size:12px}
@@ -39,4 +67,6 @@ body { font-family: Inter,Segoe UI,Arial; margin: 0; background: var(--bg); colo
   .layout{flex-direction:column}
   .left,.right{flex:1 1 auto}
   .network-container{height:60vh}
+  .control-panel{gap:12px}
+  .right{max-height:50vh}
 }

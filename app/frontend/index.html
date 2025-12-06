@@ -3,15 +3,49 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hotspot Network Visualizer — Version 2</title>
+  <title>Hotspot Network Visualizer — Version 3</title>
   <link rel="stylesheet" href="/static/styles.css">
   <link href="https://unpkg.com/vis-network/styles/vis-network.css" rel="stylesheet" />
 </head>
 <body>
   <header class="topbar">
-    <div class="title">Hotspot Network Visualizer — Version 2</div>
-    <div class="subtitle">Real-time simulated transfers · Vis.js · WebSocket</div>
+    <div class="title">Hotspot Network Visualizer — Version 3</div>
+    <div class="subtitle">Real-time traffic simulation · Interactive controls · Live analytics</div>
   </header>
+
+  <!-- Control Panel -->
+  <div class="control-panel">
+    <div class="control-group">
+      <label>Mode:</label>
+      <select id="mode-select">
+        <option value="random">Random</option>
+        <option value="hotspot">Hotspot-Centric</option>
+        <option value="heavy_talker">Heavy-Talker</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label>Speed:</label>
+      <select id="speed-select">
+        <option value="slow">Slow</option>
+        <option value="normal" selected>Normal</option>
+        <option value="fast">Fast</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <button id="play-pause-btn" class="btn-primary">⏸ Pause</button>
+    </div>
+
+    <div class="control-group">
+      <button id="reset-stats-btn" class="btn-secondary">🔄 Reset Stats</button>
+    </div>
+
+    <div class="control-group connection-status">
+      <span id="connection-status" class="status-dot status-connected"></span>
+      Connected
+    </div>
+  </div>
 
   <main class="layout">
     <section class="left">
@@ -19,6 +53,28 @@
     </section>
 
     <aside class="right">
+      <!-- Global Stats -->
+      <div class="card stats" id="global-stats">
+        <h3>Global Stats</h3>
+        <div class="stat-row">
+          <span>Transfers:</span>
+          <span id="stat-transfers" class="stat-value">0</span>
+        </div>
+        <div class="stat-row">
+          <span>Total Bytes:</span>
+          <span id="stat-total-bytes" class="stat-value">0 B</span>
+        </div>
+        <div class="stat-row">
+          <span>Top Sender:</span>
+          <span id="stat-top-sender" class="stat-value muted">—</span>
+        </div>
+        <div class="stat-row">
+          <span>Top Receiver:</span>
+          <span id="stat-top-receiver" class="stat-value muted">—</span>
+        </div>
+      </div>
+
+      <!-- Device Info -->
       <div class="card device-info" id="device-info">
         <h3>Device Info</h3>
         <div class="empty">Click a node to see details</div>
@@ -30,10 +86,18 @@
           <div class="stats">
             <div>Sent: <span id="d-sent">0</span> bytes</div>
             <div>Received: <span id="d-recv">0</span> bytes</div>
+            <div>Transfers: <span id="d-transfers">0</span></div>
           </div>
         </div>
       </div>
 
+      <!-- Alerts -->
+      <div class="card alerts" id="alerts-panel">
+        <h3>Alerts</h3>
+        <div id="alerts-list" class="alerts-list"></div>
+      </div>
+
+      <!-- Activity Log -->
       <div class="card log" id="log">
         <h3>Activity Log</h3>
         <div id="log-entries" class="log-entries"></div>
