@@ -3,19 +3,42 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hotspot Network Visualizer — Version 1</title>
+  <title>Hotspot Network Visualizer — Version 2</title>
   <link rel="stylesheet" href="/static/styles.css">
   <link href="https://unpkg.com/vis-network/styles/vis-network.css" rel="stylesheet" />
 </head>
 <body>
-  <header>
-    <h1>Hotspot Network Visualizer — Version 1</h1>
-    <p>Automatic simulated transfer events animate on the graph.</p>
+  <header class="topbar">
+    <div class="title">Hotspot Network Visualizer — Version 2</div>
+    <div class="subtitle">Real-time simulated transfers · Vis.js · WebSocket</div>
   </header>
 
-  <main>
-    <div id="network" class="network-container"></div>
-    <div id="log" class="log"></div>
+  <main class="layout">
+    <section class="left">
+      <div id="network" class="network-container"></div>
+    </section>
+
+    <aside class="right">
+      <div class="card device-info" id="device-info">
+        <h3>Device Info</h3>
+        <div class="empty">Click a node to see details</div>
+        <div class="details" style="display:none">
+          <div><strong id="d-name"></strong></div>
+          <div class="muted" id="d-type"></div>
+          <div id="d-ip"></div>
+          <div id="d-mac"></div>
+          <div class="stats">
+            <div>Sent: <span id="d-sent">0</span> bytes</div>
+            <div>Received: <span id="d-recv">0</span> bytes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card log" id="log">
+        <h3>Activity Log</h3>
+        <div id="log-entries" class="log-entries"></div>
+      </div>
+    </aside>
   </main>
 
   <script src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
